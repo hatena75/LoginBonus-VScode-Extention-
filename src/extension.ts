@@ -1,6 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import {window, commands, Disposable, ExtensionContext, StatusBarAlignment, StatusBarItem, TextDocument} from 'vscode';
+import { writeFile, readFileSync } from 'fs';
+import csvSync = require("csv-parse/lib/sync");
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -45,6 +47,29 @@ class WordCounter{
 			//ステータスバーのリソースを取得
 			this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Left);
 		}
+
+		let path = __dirname + "\\date.csv";
+		let dt = new Date();
+		let formattedDate = dt.getFullYear() * 10000 + (dt.getMonth() + 1) * 100 + dt.getDate();
+
+		let data = readFileSync(path); //エラー処理多分必要
+		let matrix = csvSync(data);
+		let array = matrix[0];
+		array.unshift( String(formattedDate) );
+
+		let formattedCsv = "";
+
+		
+
+		writeFile(path, formattedDate, (err) =>{
+			//書き込み後の処理をここに書く。
+			if(err) {
+				console.log("エラーが発生しました。" + err);
+			} else {
+				console.log("ファイルが正常に書き出しされました");
+				console.log(array);
+			}
+		});
 
 		//アクティブなエディタを取得、見つからない場合は、ステータスバーを非表示にして、何もしない
 		let editor = window.activeTextEditor;
