@@ -142,7 +142,7 @@ class WordCounterController{
 		this._wordCounter.updateWordCounter();
 
 		let subscriptions: Disposable[] = [];
-		window.onDidChangeTextEditorSelection(this._onEvent, this, subscriptions);
+		//window.onDidChangeTextEditorSelection(this._onEvent, this, subscriptions);
 		window.onDidChangeActiveTextEditor(this._onEvent, this, subscriptions);
 
 		this._disposable = Disposable.from(...subscriptions);
