@@ -53,9 +53,9 @@ class WordCounter{
 		let formattedDate = dt.getFullYear() * 10000 + (dt.getMonth() + 1) * 100 + dt.getDate();
 
 		try{
-			let data = readFileSync(path); //エラー処理多分必要
+			let data = readFileSync(path); //エラー処理対象
 			let matrix = csvSync(data);
-			let dateArray = matrix[0];
+			let dateArray = matrix[0]; //2次元配列で処理されるため、1次元に直す
 			
 			//今日初めてのログインなら書き込みを行なう
 			if(dateArray[0] !== String(formattedDate)){
@@ -75,55 +75,26 @@ class WordCounter{
 						console.log("書き出し時にエラーが発生しました。" + err);
 					} else {
 						console.log("ファイルが正常に書き出しされました");
-						console.log(formattedCsv);
 					}
 				});
 			}
+
+			//ステータスメッセージの設定
+			this._statusBarItem.text = this.WriteStatus(dateArray);
+			this._statusBarItem.show();
+
 		} catch(err){
 			console.log("読み込み時にエラーが発生しました。" + err);
-		}
-		
-		
-
-		
-
-		//アクティブなエディタを取得、見つからない場合は、ステータスバーを非表示にして、何もしない
-		let editor = window.activeTextEditor;
-		if(!editor){
-			
-			this._statusBarItem.hide();
-			return;
-		}
-
-		//エディタ内のドキュメントを取得
-		let doc = editor.document;
-
-		//マークダウンなら単語をカウント
-		if(doc.languageId === "markdown"){
-			let wordCount = this._getWordCount(doc);
-
-			this._statusBarItem.text = wordCount !== 1 ? `$(pencil) ${wordCount} Words` : '$(pencil) 1 Word';
-			this._statusBarItem.show();
-		}
-		else{
 			this._statusBarItem.hide();
 		}
 	}
 
-	public _getWordCount(doc: TextDocument): number {
-		let docContent = doc.getText();
-
-		//テキストの先頭と最後の2文字以上の空白を削除
-		docContent = docContent.replace(/(< ([^>]+)<)/g, '').replace(/\s+/g, ' ');
-        docContent = docContent.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-
-		let wordCount = 0;
-		if(docContent !== ""){
-			//スペース分割によってカウント
-			wordCount = docContent.split(" ").length;
-		}
-
-		return wordCount;
+	//ステータスバーに表示するログインボーナスの内容を決める(文字列)
+	private WriteStatus(loginDates : any): string{
+		//連続ログイン日数表示
+		//総ログイン日数表示
+		//応援メッセージとか報酬(?)とか
+		return "テスト";
 	}
 
 	//リソース解放用
