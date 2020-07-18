@@ -54,26 +54,32 @@ class WordCounter{
 
 		let data = readFileSync(path); //エラー処理多分必要
 		let matrix = csvSync(data);
-		let array = matrix[0];
-		array.unshift( String(formattedDate) ); //今日の日付を配列に追加
+		let dateArray = matrix[0];
+		
+		//今日初めてのログインなら書き込みを行なう
+		if(dateArray[0] !== String(formattedDate)){
+			dateArray.unshift( String(formattedDate) ); //今日の日付を配列に追加
 
-		let formattedCsv = "";
-		//CSV形式に直す
-		for(var day of array){
-			formattedCsv = formattedCsv + ", " + day;
+			let formattedCsv = "";
+			//CSV形式に直す
+			for(var day of dateArray){
+				formattedCsv = formattedCsv + ", " + day;
+			}
+			//始めのコンマを消すための処理
+			formattedCsv = formattedCsv.substr(2);
+
+			writeFile(path, formattedCsv, (err) =>{
+				//書き込み後の処理をここに書く。
+				if(err) {
+					console.log("エラーが発生しました。" + err);
+				} else {
+					console.log("ファイルが正常に書き出しされました");
+					console.log(formattedCsv);
+				}
+			});
 		}
 
-		formattedCsv = formattedCsv.substr(2);
-
-		writeFile(path, formattedCsv, (err) =>{
-			//書き込み後の処理をここに書く。
-			if(err) {
-				console.log("エラーが発生しました。" + err);
-			} else {
-				console.log("ファイルが正常に書き出しされました");
-				console.log(formattedCsv);
-			}
-		});
+		
 
 		//アクティブなエディタを取得、見つからない場合は、ステータスバーを非表示にして、何もしない
 		let editor = window.activeTextEditor;
