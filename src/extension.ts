@@ -12,9 +12,9 @@ export function activate(context: ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "helloworld" is now active!');
 
-	let wordCounter = new WordCounter();
+	let loginBonus = new LoginBonus();
 
-	let controller = new WordCounterController(wordCounter);
+	let controller = new LoginBonusController(loginBonus);
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -26,23 +26,23 @@ export function activate(context: ExtensionContext) {
 		// Display a message box to the user
 		//window.showInformationMessage('Hello World from helloworld!');
 
-		wordCounter.updateWordCounter();
+		loginBonus.updateLoginBonus();
 	});
 	*/
 
 	//context.subscriptions.push(disposable);
 	context.subscriptions.push(controller);
-	context.subscriptions.push(wordCounter);	
+	context.subscriptions.push(loginBonus);	
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
 
-class WordCounter{
+class LoginBonus{
 	//ステータスバーリソース用
 	private _statusBarItem: StatusBarItem;
 
-	public updateWordCounter(){
+	public updateLoginBonus(){
 		if (!this._statusBarItem){
 			//ステータスバーのリソースを取得
 			this._statusBarItem = window.createStatusBarItem(StatusBarAlignment.Left);
@@ -103,14 +103,14 @@ class WordCounter{
 	}
 }
 
-class WordCounterController{
+class LoginBonusController{
 
-	private _wordCounter: WordCounter;
+	private _loginBonus: LoginBonus;
 	private _disposable: Disposable;
 
-	constructor(wordCounter: WordCounter){
-		this._wordCounter = wordCounter;
-		this._wordCounter.updateWordCounter();
+	constructor(loginBonus: LoginBonus){
+		this._loginBonus = loginBonus;
+		this._loginBonus.updateLoginBonus();
 
 		let subscriptions: Disposable[] = [];
 		//window.onDidChangeTextEditorSelection(this._onEvent, this, subscriptions);
@@ -124,6 +124,6 @@ class WordCounterController{
 	}
 
 	private _onEvent(){
-		this._wordCounter.updateWordCounter();
+		this._loginBonus.updateLoginBonus();
 	}
 }
