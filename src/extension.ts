@@ -107,9 +107,10 @@ class LoginBonus{
 				}
 			}
 		}
-		message += "連続ログイン" + String(continuous) + "日";
+		message += "連続ログイン:" + String(continuous) + "日 ";
 		
 		//総ログイン日数表示
+		message += "総ログイン日数:" + String(loginDates.length) + "日";
 		//応援メッセージとか報酬(?)とか
 		return message;
 	}
