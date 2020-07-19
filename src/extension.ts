@@ -65,10 +65,10 @@ class LoginBonus{
 				let formattedCsv = "";
 				//CSV形式に直す
 				for(var day of dateArray){
-					formattedCsv = formattedCsv + ", " + day;
+					formattedCsv = formattedCsv + "," + day;
 				}
 				//始めのコンマを消すための処理
-				formattedCsv = formattedCsv.substr(2);
+				formattedCsv = formattedCsv.substr(1);
 
 				writeFile(path, formattedCsv, (err) =>{
 					//書き込み後の処理をここに書く。
