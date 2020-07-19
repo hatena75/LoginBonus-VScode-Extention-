@@ -10,11 +10,11 @@ export function activate(context: ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "helloworld" is now active!');
+	console.log('Congratulations, your extension "loginbonus" is now active!');
 
 	let loginBonus = new LoginBonus();
 
-	let controller = new LoginBonusController(loginBonus);
+	//let controller = new LoginBonusController(loginBonus);
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -29,9 +29,10 @@ export function activate(context: ExtensionContext) {
 		loginBonus.updateLoginBonus();
 	});
 	*/
+	loginBonus.updateLoginBonus();
 
 	//context.subscriptions.push(disposable);
-	context.subscriptions.push(controller);
+	//context.subscriptions.push(controller);
 	context.subscriptions.push(loginBonus);	
 }
 
@@ -121,6 +122,7 @@ class LoginBonus{
 	}
 }
 
+/*
 class LoginBonusController{
 
 	private _loginBonus: LoginBonus;
@@ -145,3 +147,4 @@ class LoginBonusController{
 		this._loginBonus.updateLoginBonus();
 	}
 }
+*/
