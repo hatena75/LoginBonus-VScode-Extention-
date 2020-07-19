@@ -1,6 +1,6 @@
 {
-	"name": "helloworld",
-	"displayName": "helloworld",
+	"name": "loginbonus",
+	"displayName": "loginbonus",
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onLanguage:markdown"
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"scripts": {
