@@ -93,14 +93,16 @@ class LoginBonus{
 	//ステータスバーに表示するログインボーナスの内容を決める(文字列)
 	private WriteStatus(loginDatesStr : string[]): string{
 		//文字列の日付を数値に変換
-		let loginDates: number[] = loginDatesStr.map( str => parseInt(str, 10));
+		let loginDatesNum: number[] = loginDatesStr.map( str => parseInt(str, 10));
+		let loginDates: Date[] = loginDatesNum.map( num => new Date(num / 10000,(num % 10000) / 100 - 1,num % 100 + 1));
 
 		let message : string = "";
 		//連続ログイン日数表示
 		let continuous : number = 1;
 		if(loginDates.length > 1){
 			for(var _i = 1; _i < loginDates.length; _i++){
-				if(loginDates[_i] === loginDates[_i - 1] - 1){
+				let predayTommorow = new Date(loginDates[_i].getFullYear(), loginDates[_i].getMonth() ,loginDates[_i].getDate() + 1);
+				if(loginDates[_i - 1].getTime() === predayTommorow.getTime()){
 					continuous++;
 				}
 				else{
@@ -111,7 +113,7 @@ class LoginBonus{
 		message += "連続ログイン:" + String(continuous) + "日 ";
 		
 		//総ログイン日数表示
-		message += "総ログイン日数:" + String(loginDates.length) + "日";
+		message += "総ログイン日数:" + String(loginDatesNum.length) + "日";
 		//応援メッセージとか報酬(?)とか
 		return message;
 	}
