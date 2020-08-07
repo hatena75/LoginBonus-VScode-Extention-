@@ -8,31 +8,12 @@ import csvSync = require("csv-parse/lib/sync");
 // your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "loginbonus" is now active!');
 
 	let loginBonus = new LoginBonus();
 
-	//let controller = new LoginBonusController(loginBonus);
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	/*
-	let disposable = commands.registerCommand('helloworld.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		//window.showInformationMessage('Hello World from helloworld!');
-
-		loginBonus.updateLoginBonus();
-	});
-	*/
 	loginBonus.updateLoginBonus();
 
-	//context.subscriptions.push(disposable);
-	//context.subscriptions.push(controller);
 	context.subscriptions.push(loginBonus);	
 }
 
@@ -123,30 +104,3 @@ class LoginBonus{
 		this._statusBarItem.dispose();
 	}
 }
-
-/*
-class LoginBonusController{
-
-	private _loginBonus: LoginBonus;
-	private _disposable: Disposable;
-
-	constructor(loginBonus: LoginBonus){
-		this._loginBonus = loginBonus;
-		this._loginBonus.updateLoginBonus();
-
-		let subscriptions: Disposable[] = [];
-		//window.onDidChangeTextEditorSelection(this._onEvent, this, subscriptions);
-		window.onDidChangeActiveTextEditor(this._onEvent, this, subscriptions);
-
-		this._disposable = Disposable.from(...subscriptions);
-	}
-
-	dispose(){
-		this._disposable.dispose();
-	}
-
-	private _onEvent(){
-		this._loginBonus.updateLoginBonus();
-	}
-}
-*/
