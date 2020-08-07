@@ -3,6 +3,7 @@
 	"displayName": "LoginBonus",
 	"description": "LoginBonus counts number of consecutive login days & total login days.",
 	"version": "1.0.0",
+	"publisher": "hatena75",
 	"engines": {
 		"vscode": "^1.46.0"
 	},
