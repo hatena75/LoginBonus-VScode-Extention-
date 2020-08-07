@@ -4,6 +4,10 @@
 	"description": "LoginBonus counts number of consecutive login days & total login days.",
 	"version": "1.0.0",
 	"publisher": "hatena75",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hatena75/LoginBonus-VScode-Extention-"
+	},
 	"engines": {
 		"vscode": "^1.46.0"
 	},

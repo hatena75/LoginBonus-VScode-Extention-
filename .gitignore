@@ -4,6 +4,5 @@ node_modules
 *.vsix
 .vscode
 .eslintrc.json
-.gitignore
 .vscodeignore
-testconfig.json
+CHANGELOG.md
