@@ -1,8 +1,8 @@
 {
 	"name": "loginbonus",
-	"displayName": "loginbonus",
-	"description": "",
-	"version": "0.0.1",
+	"displayName": "LoginBonus",
+	"description": "LoginBonus counts number of consecutive login days & total login days.",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.46.0"
 	},
