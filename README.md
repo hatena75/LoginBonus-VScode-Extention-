@@ -10,6 +10,6 @@ At the moment, langage of this extension is Japanese only.
 
 Initial release of LoginBonus
 
-### 1.0.1
+### 1.0.1, 1.0.2
 
 Bug fix
