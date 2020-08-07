@@ -9,3 +9,7 @@ At the moment, langage of this extension is Japanese only.
 ### 1.0.0
 
 Initial release of LoginBonus
+
+### 1.0.1
+
+Bug fix

@@ -2,7 +2,7 @@
 	"name": "loginbonus",
 	"displayName": "LoginBonus",
 	"description": "LoginBonus counts number of consecutive login days & total login days.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "hatena75",
 	"repository": {
 		"type": "git",
